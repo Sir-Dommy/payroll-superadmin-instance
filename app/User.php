@@ -44,6 +44,9 @@ class User extends Authenticatable
     /**
      * Get the business that owns the user.
      */
+
+    public $table = 'users_superadmin';
+
     public function business()
     {
         return $this->belongsTo(\App\Business::class);

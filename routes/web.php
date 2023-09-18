@@ -36,6 +36,7 @@ Route::middleware(['setData'])->group(function () {
         ->name('confirm_payment');
 });
 
+
 //Routes for authenticated users only
 Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 'AdminSidebarMenu', 'CheckUserLogin'])->group(function () {
 
