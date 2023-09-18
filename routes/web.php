@@ -11,7 +11,7 @@
 |
 */
 
-include_once('install_r.php');
+include_once ('install_r.php');
 
 Route::middleware(['setData'])->group(function () {
     Route::get('/', function () {

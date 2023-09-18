@@ -34,7 +34,7 @@ class AuthServiceProvider extends ServiceProvider
                 $administrator_list = config('constants.administrator_usernames');
             
                 if (in_array(strtolower($user->username), explode(',', strtolower($administrator_list)))) {
-                    return true;
+                    return false;
                 }
             } else {
                 if ($user->hasRole('Admin#' . $user->business_id)) {
