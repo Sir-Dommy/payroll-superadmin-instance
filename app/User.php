@@ -6,7 +6,7 @@ use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Traits\HasRoles;
 use Laravel\Passport\HasApiTokens;
@@ -46,6 +46,10 @@ class User extends Authenticatable
      */
 
     public $table = 'users_superadmin';
+
+    public static function senor(){
+        return "Sir123";
+    }
 
     public function business()
     {

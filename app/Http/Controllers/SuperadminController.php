@@ -12,16 +12,29 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use App\Charts\CommonChart;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Spatie\Permission\Models\Permission;
+
+
+
 
 class SuperadminController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function index()
     {
-        if (!auth()->user()->can('superadmin')) {
+        
+        $user = Auth::user();
+        // Create the 'Admin#1' permission for the 'web' guard
+        //Permission::create(['name' => 'superadmin', 'guard_name' => 'web']);
+
+        if (!Auth::user()->can('Admin#112')) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -52,6 +65,7 @@ class SuperadminController extends Controller
                 'not_subscribed',
                 'monthly_sells_chart'
             ));
+        // return Auth::user()->permissions;
     }
 
     /**

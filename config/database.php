@@ -103,8 +103,9 @@ return [
     | the migrations on disk haven't actually been run in the database.
     |
     */
+    //This table was changed on 18/09/2023 by Dominick the superadmin migration table
 
-    'migrations' => 'migrations',
+    'migrations' => 'migrations_superadmin',
 
     /*
     |--------------------------------------------------------------------------

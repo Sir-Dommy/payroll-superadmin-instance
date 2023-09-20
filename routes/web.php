@@ -11,7 +11,50 @@
 |
 */
 
+
+// include('..\Modules\Superadmin\Http\routes.php');
 include_once ('install_r.php');
+
+
+// //Module routes added for testing purpose only on 19/09/2023
+// Route::group(['middleware' => ['web', 'auth', 'language', 'AdminSidebarMenu', 'superadmin'], 'prefix' => 'superadmin', 'namespace' => 'Modules\Superadmin\Http\Controllers'], function () {
+//     Route::get('/install', 'InstallController@index');
+//     Route::get('/install/update', 'InstallController@update');
+//     Route::get('/install/uninstall', 'InstallController@uninstall');
+
+//     Route::get('/', 'SuperadminController@index');
+//     Route::get('/stats', 'SuperadminController@stats');
+    
+//     Route::get('/{business_id}/toggle-active/{is_active}', 'BusinessController@toggleActive');
+
+//     Route::get('/users/{business_id}', 'BusinessController@usersList');
+//     Route::post('/update-password', 'BusinessController@updatePassword');
+
+
+//     Route::resource('/business', 'BusinessController');
+//     Route::get('/business/{id}/destroy', 'BusinessController@destroy');
+
+//     Route::resource('/packages', 'PackagesController');
+//     Route::get('/packages/{id}/destroy', 'PackagesController@destroy');
+
+//     Route::get('/settings', 'SuperadminSettingsController@edit');
+//     Route::put('/settings', 'SuperadminSettingsController@update');
+//     Route::get('/edit-subscription/{id}', 'SuperadminSubscriptionsController@editSubscription');
+//     Route::post('/update-subscription', 'SuperadminSubscriptionsController@updateSubscription');
+//     Route::resource('/superadmin-subscription', 'SuperadminSubscriptionsController');
+
+//     Route::get('/communicator', 'CommunicatorController@index');
+//     Route::post('/communicator/send', 'CommunicatorController@send');
+//     Route::get('/communicator/get-history', 'CommunicatorController@getHistory');
+
+//     Route::resource('/frontend-pages', 'PageController');
+// });
+
+//including base paths from Module 
+// include_once base_path('./Modules/Superadmin/Http/routes.php');
+
+
+
 
 Route::middleware(['setData'])->group(function () {
     Route::get('/', function () {
@@ -43,7 +86,9 @@ Route::middleware(['setData', 'auth', 'SetSessionData', 'language', 'timezone', 
     Route::get('/sign-in-as-user/{id}', 'ManageUserController@signInAsUser')->name('sign-in-as-user');
 
     Route::get('/home', 'SuperadminController@index')->name('home');
-   // Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/comms', '\Modules\Superadmin\Http\Controllers\CommunicatorController@index')->name('homecomms');
+    //Route::get('/home', 'Modules\Superadmin\Http\Controllers\SuperadminController@index')->name('home');
+    //Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/home/get-totals', 'HomeController@getTotals');
     Route::get('/home/product-stock-alert', 'HomeController@getProductStockAlert');
     Route::get('/home/purchase-payment-dues', 'HomeController@getPurchasePaymentDues');

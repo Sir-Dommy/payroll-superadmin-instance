@@ -7,9 +7,11 @@ use Illuminate\Http\Response;
 
 use App\Business;
 use App\User;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Modules\Superadmin\Notifications\SuperadminCommunicator;
 use Modules\Superadmin\Entities\SuperadminCommunicatorLog;
+use App\Http\Middleware\Authenticate;
 
 use Yajra\DataTables\Facades\DataTables;
 
@@ -19,9 +21,13 @@ class CommunicatorController extends BaseController
      * Display a listing of the resource.
      * @return Response
      */
+    public function index2(){
+        return "senor";
+    }
+
     public function index()
     {
-        if (!auth()->user()->can('superadmin')) {
+        if (!auth()->user()->can('Admin#112')) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -30,6 +36,13 @@ class CommunicatorController extends BaseController
 
         return view('superadmin::communicator.index')
                 ->with(compact('businesses'));
+
+
+        // // Access the authenticated user
+        // $auths = auth()->user()->permissions;
+        // var_dump ($auths);
+
+        
     }
 
     /**

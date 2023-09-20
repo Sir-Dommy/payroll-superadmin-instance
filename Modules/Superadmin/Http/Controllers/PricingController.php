@@ -33,7 +33,6 @@ class PricingController extends Controller
      */
     public function index()
     {
-        // return "Senor";
         $packages = Package::listPackages(true);
 
         //Get all module permissions and convert them into name => label

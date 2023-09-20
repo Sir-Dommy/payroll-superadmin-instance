@@ -22,9 +22,9 @@ class SuperadminController extends BaseController
      */
     public function index()
     {
-        // if (!auth()->user()->can('superadmin')) {
-        //     abort(403, 'Unauthorized action.');
-        // }
+        if (!auth()->user()->can('superadmin')) {
+            abort(403, 'Unauthorized action.');
+        }
 
         
         $date_filters['this_yr'] = ['start' => Carbon::today()->startOfYear()->toDateString(),
@@ -48,14 +48,13 @@ class SuperadminController extends BaseController
         $monthly_sells_chart->labels(array_keys($subscriptions))
             ->dataset(__('superadmin::lang.total_subscriptions', ['currency' => $currency->currency]), 'column', array_values($subscriptions));
 
-        // return view('superadmin::superadmin.index')
-        //     ->with(compact(
-        //         'date_filters',
-        //         'not_subscribed',
-        //         'monthly_sells_chart'
-        //     ));
+        return view('superadmin::superadmin.index')
+            ->with(compact(
+                'date_filters',
+                'not_subscribed',
+                'monthly_sells_chart'
+            ));
 
-        return 12;
     }
 
     /**

@@ -1,6 +1,18 @@
 <?php
 
+use App\Http\Middleware\Authenticate;
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/pricing', 'Modules\Superadmin\Http\Controllers\PricingController@index')->name('pricing');
+
+// Test routes 
+// Route::middleware(['setData'])->group(function () {
+//     // Your module's routes here
+//     Route::get('/superadmin/communicator', 'Modules\Superadmin\Http\Controllers\CommunicatorController@index');
+
+// });
+Auth::user();
+
 
 Route::group(['middleware' => ['web', 'auth', 'language', 'AdminSidebarMenu', 'superadmin'], 'prefix' => 'superadmin', 'namespace' => 'Modules\Superadmin\Http\Controllers'], function () {
     Route::get('/install', 'InstallController@index');
@@ -28,7 +40,7 @@ Route::group(['middleware' => ['web', 'auth', 'language', 'AdminSidebarMenu', 's
     Route::post('/update-subscription', 'SuperadminSubscriptionsController@updateSubscription');
     Route::resource('/superadmin-subscription', 'SuperadminSubscriptionsController');
 
-    Route::get('/communicator', 'CommunicatorController@index');
+    //Route::get('/communicator', 'CommunicatorController@index');
     Route::post('/communicator/send', 'CommunicatorController@send');
     Route::get('/communicator/get-history', 'CommunicatorController@getHistory');
 

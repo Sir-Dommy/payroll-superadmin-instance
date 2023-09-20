@@ -5,6 +5,7 @@ namespace Modules\Superadmin\Providers;
 use App\System;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Modules\Superadmin\Entities\Subscription;
@@ -24,6 +25,7 @@ class SuperadminServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
     public function boot()
     {
         $this->registerTranslations();
@@ -117,6 +119,7 @@ class SuperadminServiceProvider extends ServiceProvider
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path . '/modules/superadmin';
         }, \Config::get('view.paths')), [$sourcePath]), 'superadmin');
+
     }
 
     /**
